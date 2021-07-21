@@ -16,98 +16,123 @@ import users from '../views/users.vue'
 import Register from '../views/register.vue'
 import forgotPassword from '../views/forgot-password.vue'
 import request from '../views/request.vue'
-
-const routes = [
-  {
-    path: '/',
-    name: 'Login',
-    component: Login
-  },
-  {
-    path: '/register',
-    name: 'Register',
-    component: Register
-  },
-  {
-    path: '/forgot-password',
-    name: 'forgotPassword',
-    component: forgotPassword
-  },
-  {
-    path:'/admin',
-    name:'Admin',
-    component:Admin
-  },
-  {
-    path:'/addevents',
-    name:'addEvents',
-    component:addEvent
-  },
-  {
-    path:'/adminevents',
-    name:'adminEvents',
-    component:adminEvent
-  },
-  {
-    path:'/addjob',
-    name:'addJob',
-    component:addJob
-  },
-  {
-    path:'/adminjob',
-    name:'adminJob',
-    component:adminJob
-  },
-  {
-    path:'/adduser',
-    name:'addUser',
-    component:addUser
-  },
-  {
-    path:'/users',
-    name:'users',
-    component:users
-  },
-  {
-    path:'/alumni',
-    name:'alumni',
-    component:alumni
-  },
-  {
-    path:'/studentHome',
-    name:'studentHome',
-    component:studentHome
-  },
-  {
-    path:'/transcript',
-    name:'Transcript',
-    component:Transcript
-  },
-  {
-    path:'/request',
-    name:'request',
-    component:request
-  },
-  {
-    path:'/transcriptRequest',
-    name:'TranscriptRequest',
-    component:TranscriptRequest
-  },
-  {
-    path:'/jobs',
-    name:'Jobs',
-    component:Jobs
-  },
-  {
-    path:'/events',
-    name:'Events',
-    component:Events
-  }
-]
+import {fb} from '../firebase'
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes:[
+    {
+      path: '/',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register
+    },
+    {
+      path: '/forgot-password',
+      name: 'forgotPassword',
+      component: forgotPassword
+    },
+    {
+      path:'/admin',
+      name:'Admin',
+      component:Admin,
+      meta:{requiresAuth: true},
+    },
+    {
+      path:'/addevents',
+      name:'addEvents',
+      component:addEvent,
+      meta:{requiresAuth: true},
+    },
+    {
+      path:'/adminevents',
+      name:'adminEvents',
+      component:adminEvent,
+      meta:{requiresAuth: true},
+    },
+    {
+      path:'/addjob',
+      name:'addJob',
+      component:addJob
+    },
+    {
+      path:'/adminjob',
+      name:'adminJob',
+      component:adminJob,
+      meta:{requiresAuth: true},
+    },
+    {
+      path:'/adduser',
+      name:'addUser',
+      component:addUser,
+      meta:{requiresAuth: true},
+    },
+    {
+      path:'/users',
+      name:'users',
+      component:users,
+      meta:{requiresAuth: true},
+    },
+    {
+      path:'/alumni',
+      name:'alumni',
+      component:alumni,
+      meta:{requiresAuth: true},
+    },
+    {
+      path:'/studentHome',
+      name:'studentHome',
+      component:studentHome,
+      meta:{requiresAuth: true},
+    },
+    {
+      path:'/transcript',
+      name:'Transcript',
+      component:Transcript,
+      meta:{requiresAuth: true},
+    },
+    {
+      path:'/request',
+      name:'request',
+      component:request,
+      meta:{requiresAuth: true},
+    },
+    {
+      path:'/transcriptRequest',
+      name:'TranscriptRequest',
+      component:TranscriptRequest,
+      meta:{requiresAuth: true},
+    },
+    {
+      path:'/jobs',
+      name:'Jobs',
+      component:Jobs,
+      meta:{requiresAuth: true},
+    },
+    {
+      path:'/events',
+      name:'Events',
+      component:Events,
+      meta:{requiresAuth: true},
+    }
+  ]
+})
+
+router.beforeEach((to, from, next)=>{
+  const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
+  const currentUser = fb.auth().currentUser
+
+  if(requiresAuth && !currentUser){
+    next('/')
+  }else if(requiresAuth && currentUser){
+    next()
+  }else{
+    next()
+  }
 })
 
 export default router

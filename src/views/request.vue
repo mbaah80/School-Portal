@@ -44,13 +44,13 @@
                                     </tr>
                                  </thead>
                                  <tbody>
-                                    <tr>
-                                       <td>1</td>
-                                       <td>Mark</td>
-                                       <td>Otto</td>
-                                       <td>@mdo</td>
-                                       <td>Ducky</td>
-                                       <td>date</td>
+                                    <tr v-for="req in request" :key="req.id">
+                                       <td>{{req.name}}</td>
+                                       <td>{{req.department}}</td>
+                                       <td>{{req.course}}</td>
+                                       <td>{{req.fileType}}</td>
+                                       <td>{{req.date}}</td>
+                                       <td>{{req.date}}</td>
                                     </tr>
                                    
                                  </tbody>
@@ -75,7 +75,7 @@
 </template>
 <script>
 import studentHeader from '../components/studentsidebar.vue'
-import db from '../firebase'
+import {fb,db} from '../firebase'
 export default {
    components:{
       studentHeader
@@ -86,10 +86,18 @@ export default {
        }
    },
    mounted() {
+    //    let user = fb.auth().currentUser;
+    //     let uid = user.uid;
+    //     this.email = user.email
+
        db.collection("alumniRequest").get()
-       .then((res)=>{
-           this.request = res.data
-       })
+         .then((querySnapshot)=>{
+             console.log(querySnapshot)
+          querySnapshot.forEach((doc)=>{
+          this.request.push(doc.data());
+          
+          });
+        });
    },
 }
 </script>

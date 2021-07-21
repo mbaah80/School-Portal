@@ -14,7 +14,7 @@
          <div class="container-fluid">
             <div class="row">
                <div class="main-header">
-                  <h4>Student Name</h4>
+                  <h4>{{name}}</h4>
                </div>
             </div>
             <!-- 4-blocks row start -->
@@ -160,10 +160,31 @@
 </template>
 <script>
 import studentHeader from '../components/studentsidebar.vue'
+import {fb} from '../firebase'
 export default {
    components:{
       studentHeader
-   }
+   },
+   data() {
+       return {
+          userProfile:{}
+       }
+    },
+    methods: {
+       logout(){
+          fb.auth().signOut()
+          this.$router.push('/')
+       }
+    },
+    created(){
+        let user = fb.auth().currentUser
+        let uid = user.uid;
+        this.name = user.email
+        
+    },
+    mounted() {
+       
+    },
 }
 </script>
   

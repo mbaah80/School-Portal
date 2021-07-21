@@ -1,3 +1,4 @@
+
 import firebase, { firestore } from 'firebase'
 import 'firebase/storage'
 import 'firebase/auth'
@@ -17,4 +18,4 @@ import 'firebase/firestore'
   const db = firebase.firestore();
   const st = firebase.storage();
 
-  export {fb,db}
+  export {fb,db,st}

@@ -1755,26 +1755,7 @@ Basic card CSS
     transform: rotate(0deg); }
   100% {
     transform: rotate(60deg); } }
-/* bar loader */
-.loader-bg {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(255, 255, 255, 0.5);
-  z-index: 9999; }
-  .loader-bg .loader-bar {
-    position: fixed;
-    height: 5px;
-    width: 80%;
-    top: 0;
-    left: 0;
-    background: #2196f3;
-    -webkit-animation: barfiller 2s;
-    -moz-animation: barfiller 2s;
-    -ms-animation: barfiller 2s;
-    animation: barfiller 2s; }
+
 
 @-webkit-keyframes barfiller {
   0% {

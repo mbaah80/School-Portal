@@ -105,7 +105,7 @@
     </div>
 </template>
 <script>
-import {db} from '../firebase'
+import {fb,db} from '../firebase'
 import studentHeader from '../components/studentsidebar.vue'
 import $ from 'jquery'
 export default {
