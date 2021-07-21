@@ -45,7 +45,7 @@
 						</div>
 						<div class="row">
 							<div class="col-xs-10 offset-xs-1">
-								<button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light m-b-20">Login
+								<button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light m-b-20"> <span id="hideText">Login</span><i class="icofont icofont-refresh" id="spinner" style="color:#fff; margin-left:10px; display:none"> Loading...</i>
 										</button>
 							</div>
 						</div>
@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import firebase from 'firebase'
+import {fb} from '../firebase'
 export default {
 	data() {
 		return {
@@ -83,17 +83,25 @@ export default {
 	},
 	methods: {
 		login(){
-			firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+			$('#spinner').show()
+			$('#hideText').hide()
+			fb.auth().signInWithEmailAndPassword(this.email, this.password)
 			.then((res)=>{
-				alert(res.data)
-				 	// this.$router.push('/studentHome')
+				alert(res.message)
+				 	this.$router.push('/studentHome')
 				// if(res.email == admin){
 				// 	this.$router.push('/admin')
 				// }else{
 				// 	this.$router.push('/studentHome')
 				// }
+				this.email = ""
+				this.password = ""
 			}).catch((err)=>{
-				alert(err)
+				this.email = ""
+				this.password = ""
+			$('#spinner').hide()
+			$('#hideText').show()
+				alert(err.message)
 			})
 		}
 	},

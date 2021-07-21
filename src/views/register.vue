@@ -79,8 +79,7 @@
 	</div>
 </template>
 <script>
-import firebase from 'firebase'
-import db from 'firebase/firebase-firestore'
+import {fb,db} from '../firebase'
 import $ from 'jquery'
 export default {
 	data() {
@@ -98,9 +97,10 @@ export default {
 		register(){
 			$('#spinner').show()
 			$('#hideText').hide()
-			firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+			fb.auth().createUserWithEmailAndPassword(this.email, this.password)
 			.then((res)=>{
-				db.collections('users').doc(res.user.uid).set({
+				
+				db.collection('users').doc(res.user.uid).set({
 					firstname:this.firstname,
 					lastname:this.lastname,
 					id:this.id,
@@ -109,6 +109,12 @@ export default {
 				})
 
 				this.$router.push('/studentHome')
+				this.email = ""
+				this.password = ""
+				this.firstname = ""
+				this.lastname = ""
+				this.id = ""
+				this.year = ""
 			}).catch((err)=>{
 				console.log(err)
 				this.email = ""

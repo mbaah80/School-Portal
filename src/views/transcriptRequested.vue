@@ -37,28 +37,28 @@
                                 <div class="form-group row">
                                     <label for="h-email" class="col-md-2 col-form-label form-control-label">Full Name</label>
                                     <div class="col-md-10">
-                                        <input type="text" id="h-email" v-model="name" class="form-control" >
+                                        <input type="text" id="h-email" v-model="name" class="form-control" required>
                                     </div>
                                 </div>
                                 
                                 <div class="form-group row">
                                     <label for="h-pwd" class="col-md-2 col-form-label form-control-label">Department</label>
                                     <div class="col-md-10">
-                                        <input id="h-pwd" type="text" v-model="department" class="form-control" >
+                                        <input id="h-pwd" type="text" v-model="department" class="form-control" required>
                                     </div>
                                 </div>
                                 
                                 <div class="form-group row">
                                     <label for="h-re-pwd" class="col-md-2 col-form-label form-control-label">Course</label>
                                     <div class="col-md-10">
-                                        <input id="h-re-pwd" type="text" v-model="course" class="form-control" >
+                                        <input id="h-re-pwd" type="text" v-model="course" class="form-control" required>
                                     </div>
                                 </div>
                                 
                                 <div class="form-group row">
                                   <label for="exampleSelect1" class="col-md-2 col-form-label form-control-label">Document Type</label>
                                  <div class="col-md-10">
-                                         <select class="form-control" id="exampleSelect1" v-model="fileType">
+                                         <select class="form-control" id="exampleSelect1" v-model="fileType" required>
                                             <option>Transcript</option>
                                             <option>Recommendation</option>
                                             <option>English Proficiency</option>
@@ -79,7 +79,7 @@
                                 <div class="form-group row">
                                     <div class="col-md-9">
                                         <button type="submit" class="btn btn-warning waves-effect waves-light" style="margin-top:20px; margin-left:90%; width:300px">
-                                            Submit
+                                             <span id="hideText">Submit</span><i class="icofont icofont-refresh" id="spinner" style="color:#fff; margin-left:10px; display:none"> Loading...</i>
                                         </button>
                                     </div>
                                 </div>
@@ -105,7 +105,9 @@
     </div>
 </template>
 <script>
+import {db} from '../firebase'
 import studentHeader from '../components/studentsidebar.vue'
+import $ from 'jquery'
 export default {
    components:{
       studentHeader
@@ -121,11 +123,37 @@ export default {
    },
    methods: {
        requestFile(){
-           if(this.name =="" && this.department == "" && this.course =="" && this.fileType == null && this.date ==null){
+           $('#spinner').show()
+			$('#hideText').hide()
+            let user = fb.auth().currentUser;
+            let uid = user.uid;
+          db.collection('alumniRequest').add({
+              uid:user.uid,
+              name:this.name,
+              department:this.department,
+              course:this.course,
+              fileType:this.fileType,
+              date:this.date
+          }).then((res)=>{
 
-           }else{
-
-           }
+              this.name = ""
+              this.department = ""
+              this.course = ""
+              this.fileType =""
+              this.date = ""
+              $('#spinner').hide()
+			$('#hideText').show()
+              console.log(res)
+          }).catch((err)=>{
+              console.log(err)
+              $('#spinner').hide()
+			$('#hideText').show()
+            this.name = ""
+              this.department = ""
+              this.course = ""
+              this.fileType =""
+              this.date = ""
+          })
        }
    },
 }

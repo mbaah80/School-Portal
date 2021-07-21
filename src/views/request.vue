@@ -16,8 +16,7 @@
             <div class="row">
                <div class="col-sm-12 p-0">
                   <div class="main-header">
-                     <h4>Files Recieved</h4>
-                     <router-link to="/transcriptRequest" type="button" class="btn btn-warning waves-effect waves-light" style="margin-left:80%">Request Transcript </router-link>
+                     <h4>Requests</h4>
                   </div>
                </div>
             </div>
@@ -35,12 +34,13 @@
                               <table class="table">
                                  <thead>
                                     <tr>
-                                       <th>#</th>
-                                       <th>First Name</th>
-                                       <th>Last Name</th>
-                                       <th>Username</th>
-                                       <th>Date</th>
-                                       <th>Option</th>
+                                       
+                                       <th>Full Name</th>
+                                       <th>Department</th>
+                                       <th>Course</th>
+                                       <th>Document Type</th>
+                                       <th>Completed Year</th>
+                                       <th>Request Date</th>
                                     </tr>
                                  </thead>
                                  <tbody>
@@ -50,7 +50,7 @@
                                        <td>Otto</td>
                                        <td>@mdo</td>
                                        <td>Ducky</td>
-                                       <td><button type="button" class="btn btn-primary waves-effect waves-light">Download</button></td>
+                                       <td>date</td>
                                     </tr>
                                    
                                  </tbody>
@@ -75,9 +75,21 @@
 </template>
 <script>
 import studentHeader from '../components/studentsidebar.vue'
+import db from '../firebase'
 export default {
    components:{
       studentHeader
-   }
+   },
+   data() {
+       return {
+           request:[]
+       }
+   },
+   mounted() {
+       db.collection("alumniRequest").get()
+       .then((res)=>{
+           this.request = res.data
+       })
+   },
 }
 </script>

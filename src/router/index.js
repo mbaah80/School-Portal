@@ -15,6 +15,7 @@ import alumni from '../views/alumni.vue'
 import users from '../views/users.vue'
 import Register from '../views/register.vue'
 import forgotPassword from '../views/forgot-password.vue'
+import request from '../views/request.vue'
 
 const routes = [
   {
@@ -81,6 +82,11 @@ const routes = [
     path:'/transcript',
     name:'Transcript',
     component:Transcript
+  },
+  {
+    path:'/request',
+    name:'request',
+    component:request
   },
   {
     path:'/transcriptRequest',

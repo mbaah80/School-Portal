@@ -51,6 +51,11 @@
                       <i class="icon-book-open"></i><span> Transcript</span>
                     </router-link>                
                 </li>
+                  <li class="treeview">
+                    <router-link class="waves-effect waves-dark" to="/request">
+                      <i class="icon-book-open"></i><span> Request</span>
+                    </router-link>                
+                </li>
               <li class="treeview">
                     <router-link class="waves-effect waves-dark" to="/events">
                         <i class="icon-list"></i><span> Events</span>
