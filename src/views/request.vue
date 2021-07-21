@@ -86,16 +86,14 @@ export default {
        }
    },
    mounted() {
-    //    let user = fb.auth().currentUser;
-    //     let uid = user.uid;
-    //     this.email = user.email
+       let user = fb.auth().currentUser;
+        let uid = user.uid;
+        this.email = user.email
 
-       db.collection("alumniRequest").get()
+       db.collection("alumniRequest").where("uid", "==", user.uid).get()
          .then((querySnapshot)=>{
-             console.log(querySnapshot)
           querySnapshot.forEach((doc)=>{
-          this.request.push(doc.data());
-          
+             this.request.push(doc.data());
           });
         });
    },

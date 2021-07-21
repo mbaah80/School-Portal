@@ -87,13 +87,13 @@ export default {
 			$('#hideText').hide()
 			fb.auth().signInWithEmailAndPassword(this.email, this.password)
 			.then((res)=>{
-				alert(res.message)
-				 	this.$router.push('/studentHome')
-				// if(res.email == admin){
-				// 	this.$router.push('/admin')
-				// }else{
-				// 	this.$router.push('/studentHome')
-				// }
+				if(this.email == "admin@admin.com" & this.password == "admin1111"){
+					this.$router.push('/admin')
+					 this.$toast.success('Admin Logging In');
+				}else{
+					this.$router.push('/studentHome')
+					 this.$toast.success('Alumni Logging In');
+				}
 				this.email = ""
 				this.password = ""
 			}).catch((err)=>{
@@ -101,7 +101,7 @@ export default {
 				this.password = ""
 			$('#spinner').hide()
 			$('#hideText').show()
-				alert(err.message)
+				 this.$toast.error(err.message);
 			})
 		}
 	},

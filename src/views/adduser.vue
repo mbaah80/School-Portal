@@ -84,7 +84,7 @@
                                 <div class="form-group row">
                                     <div class="col-md-9">
                                         <button type="submit" class="btn btn-warning waves-effect waves-light" style="margin-top:20px; margin-left:90%; width:300px">
-                                            Submit
+                                             <span id="hideText">Submit</span><i class="icofont icofont-refresh" id="spinner" style="color:#fff; margin-left:10px; display:none"> Loading...</i>
                                         </button>
                                     </div>
                                 </div>
@@ -117,7 +117,8 @@ export default {
    },
    data() {
        return {
-           name:'',
+           firstname:'',
+           lastname:'',
            department:'',
            email:'',
            contact:'',
@@ -127,11 +128,40 @@ export default {
    },
    methods: {
        addUser(){
-           if(this.name ==""  && this.email =="" && this.department == "" && this.email =="" && this.position == null && this.password ==null){
-
-           }else{
-
-           }
+        	$('#spinner').show()
+			$('#hideText').hide()
+			fb.auth().createUserWithEmailAndPassword(this.email, this.password)
+			.then((res)=>{
+				
+				db.collection('admin').doc(res.user.uid).set({
+					firstname:this.firstname,
+					lastname:this.lastname,
+					department:this.department,
+					contact:this.contact,
+					position:this.position
+					
+				})
+				this.email = ""
+				this.password = ""
+				this.firstname = ""
+				this.lastname = ""
+				this.department = ""
+				this.contact = ""
+                this.position=""
+                this.$toast.success('User Account Added');
+			}).catch((err)=>{
+				
+				this.$toast.error(err.message);
+			    this.email = ""
+				this.password = ""
+				this.firstname = ""
+				this.lastname = ""
+				this.department = ""
+				this.contact = ""
+                this.position=""
+				$('#spinner').hide()
+				$('#hideText').show()
+			})
        }
    },
 }

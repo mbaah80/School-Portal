@@ -106,6 +106,7 @@ export default {
 					id:this.id,
 					course:this.course,
 					year:this.year
+					
 				})
 
 				this.$router.push('/studentHome')
@@ -117,6 +118,7 @@ export default {
 				this.year = ""
 			}).catch((err)=>{
 				console.log(err)
+				this.$toast.error(err.message);
 				this.email = ""
 				this.password = ""
 				this.firstname = ""

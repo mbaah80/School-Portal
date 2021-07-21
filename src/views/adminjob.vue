@@ -23,27 +23,47 @@
             </div>
             <!-- Header ends -->
 
+         
             <!-- Row start -->
             <div class="row">
                <!-- Multiple Open Accordion start -->
+                <div class="col-lg-3">
+               </div>
               <div class="col-lg-6">
                   <div class="card">
                      <div class="card-block accordion-block">
                         <div id="accordion" role="tablist" aria-multiselectable="true">
-                           <div class="accordion-panel">
+                           <div class="accordion-panel" v-for="job in jobs" :key="job.id">
                               <div class="accordion-heading" role="tab" id="headingTwo">
                                  <h3 class="card-title accordion-title">
                                 <a  class="accordion-msg" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
-                                Lorem Message 1
+                                    {{job.title}}
                                 </a>
                             </h3>
                               </div>
                               <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                  <div class="accordion-content accordion-desc">
+                                  <div class="row">
+                                    <div class="col-md-4">
+                                       <p>{{job.company}}</p>
+                                    </div>
+                                     <div class="col-md-4">
+                                       <p>{{job.salary}}</p>
+                                    </div>
+                                 </div>
+                                  <div class="row">
+                                     <div class="col-md-4">
+                                       <p><span>Apply Email</span>{{job.email}}</p>
+                                    </div>
+                                     <div class="col-md-4">
+                                       <p><span>Company Location </span>{{job.vunue}}</p>
+                                    </div>
+                                      <div class="col-md-4">
+                                       <p><span>Deadline</span> {{job.date}}</p>
+                                    </div>
+                                 </div>
                                     <p>
-                                       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
-                                       survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                                       and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                    <span>Job Decription</span>  {{job.description}}
                                     </p>
                                  </div>
                               </div>
@@ -54,31 +74,7 @@
                </div>
                <!-- Multiple Open Accordion ends -->
                 <!-- Multiple Open Accordion start -->
-               <div class="col-lg-6">
-                  <div class="card">
-                     <div class="card-block accordion-block">
-                        <div id="accordion" role="tablist" aria-multiselectable="true">
-                           <div class="accordion-panel">
-                              <div class="accordion-heading" role="tab" id="headingOne">
-                                 <h3 class="card-title accordion-title">
-                                <a  class="accordion-msg" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Lorem Message 1
-                                </a>
-                            </h3>
-                              </div>
-                              <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                 <div class="accordion-content accordion-desc">
-                                    <p>
-                                       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
-                                       survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                                       and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                    </p>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+               <div class="col-lg-3">
                </div>
                <!-- Multiple Open Accordion ends -->
 
@@ -96,9 +92,27 @@
 </template>
 <script>
 import Header from '../components/header.vue'
+import {fb, db} from '../firebase'
 export default {
    components:{
       Header
-   }
+   },
+    data() {
+      return {
+         jobs:[]
+      }
+   },
+    mounted() {
+       let user = fb.auth().currentUser;
+        let uid = user.uid;
+        this.email = user.email
+
+       db.collection("job").get()
+         .then((querySnapshot)=>{
+          querySnapshot.forEach((doc)=>{
+             this.jobs.push(doc.data());
+          });
+        });
+   },
 }
 </script>

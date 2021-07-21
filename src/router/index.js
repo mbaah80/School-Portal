@@ -16,6 +16,7 @@ import users from '../views/users.vue'
 import Register from '../views/register.vue'
 import forgotPassword from '../views/forgot-password.vue'
 import request from '../views/request.vue'
+import Profile from '../views/profile.vue'
 import {fb} from '../firebase'
 
 const router = createRouter({
@@ -35,6 +36,11 @@ const router = createRouter({
       path: '/forgot-password',
       name: 'forgotPassword',
       component: forgotPassword
+    },
+    {
+      path:'/profile',
+      name:'Profile',
+      component:Profile
     },
     {
       path:'/admin',

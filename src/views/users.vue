@@ -38,18 +38,18 @@
                                        <th>Full Name</th>
                                        <th>Position</th>
                                        <th>Department</th>
-                                       <th>Date</th>
+                                       <th>Eamil</th>
                                        <th>Contact</th>
                                        <th>Option</th>
                                     </tr>
                                  </thead>
                                  <tbody>
-                                    <tr>
-                                       <td>Mark</td>
-                                       <td>Otto</td>
-                                       <td>@mdo</td>
-                                       <td>Ducky</td>
-                                       <td>024565673</td>
+                                    <tr v-for="user in users" :key="user.id">
+                                       <td>{{user.firstname}} {{user.lastname}}</td>
+                                       <td>{{user.position}}</td>
+                                       <td>{{user.department}}</td>
+                                       <td>{{user.email}}</td>
+                                       <td>{{user.contact}}</td>
                                        <td><button type="button" class="btn btn-danger waves-effect waves-light">X</button></td>
                                     </tr>
                                    
@@ -75,9 +75,27 @@
 </template>
 <script>
 import Header from '../components/header.vue'
+import {fb, db} from '../firebase'
 export default {
    components:{
       Header
-   }
+   },
+     data() {
+      return {
+         users:[]
+      }
+   },
+    mounted() {
+       let user = fb.auth().currentUser;
+        let uid = user.uid;
+        this.email = user.email
+
+       db.collection("admin").get()
+         .then((querySnapshot)=>{
+          querySnapshot.forEach((doc)=>{
+             this.users.push(doc.data());
+          });
+        });
+   },
 }
 </script>

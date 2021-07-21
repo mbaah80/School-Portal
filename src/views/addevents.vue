@@ -70,7 +70,7 @@
                                 <div class="form-group row">
                                     <div class="col-md-9">
                                         <button type="submit" class="btn btn-warning waves-effect waves-light" style="margin-top:20px; margin-left:90%; width:300px">
-                                            Submit
+                                             <span id="hideText">Submit</span><i class="icofont icofont-refresh" id="spinner" style="color:#fff; margin-left:10px; display:none"> Loading...</i>
                                         </button>
                                     </div>
                                 </div>
@@ -97,6 +97,7 @@
 </template>
 <script>
 import Header from '../components/header.vue'
+import {fb,db} from '../firebase'
 export default {
    components:{
       Header
@@ -112,12 +113,37 @@ export default {
    },
    methods: {
        eventAdd(){
-           if(this.title =="" && this.time == "" && this.date =="" && this.venue == null && this.description ==null){
-               alert("Some fields are empty")
-               return false
-           }else{
-               alert('data is sent')
-           }
+           $('#spinner').show()
+			$('#hideText').hide()
+            let user = fb.auth().currentUser;
+            let uid = user.uid;
+          db.collection('event').add({
+              uid:user.uid,
+              title:this.title,
+              time:this.time,
+              date:this.date,
+              venue:this.venue,
+              description:this.description
+          }).then((res)=>{
+
+              this.title = ""
+              this.time = ""
+              this.venue =""
+              this.date = ""
+              this.description = ""
+              $('#spinner').hide()
+			$('#hideText').show()
+             this.$toast.success('Event Posted Successful');
+          }).catch((err)=>{
+              this.$toast.error('Internal Server Error');
+              $('#spinner').hide()
+			$('#hideText').show()
+             this.title = ""
+              this.time = ""
+              this.venue =""
+              this.date = ""
+              this.description = ""
+          })
        }
    },
 }

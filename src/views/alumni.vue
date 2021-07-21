@@ -43,12 +43,12 @@
                                     </tr>
                                  </thead>
                                  <tbody>
-                                    <tr>
-                                       <td>Mark</td>
-                                       <td>Otto</td>
-                                       <td>@mdo</td>
-                                       <td>Ducky</td>
-                                       <td>2017</td>
+                                    <tr v-for="alumni in alumnis" :key="alumni.id">
+                                       <td>{{alumni.firstname}} {{alumni.lastname}}</td>
+                                       <td>{{alumni.id}}</td>
+                                       <td>{{alumni.department}}</td>
+                                       <td>{{alumni.course}}</td>
+                                       <td>{{alumni.year}}</td>
                                        <td><button type="button" class="btn btn-primary waves-effect waves-light">View</button></td>
                                     </tr>
                                    
@@ -77,6 +77,23 @@ import Header from '../components/header.vue'
 export default {
    components:{
       Header
-   }
+   },
+   data() {
+      return {
+         alumnis:[]
+      }
+   },
+    mounted() {
+       let user = fb.auth().currentUser;
+        let uid = user.uid;
+        this.email = user.email
+
+       db.collection("users").get()
+         .then((querySnapshot)=>{
+          querySnapshot.forEach((doc)=>{
+             this.alumnis.push(doc.data());
+          });
+        });
+   },
 }
 </script>

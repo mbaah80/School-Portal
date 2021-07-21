@@ -13,8 +13,8 @@
          <!-- Main content starts -->
          <div class="container-fluid">
             <div class="row">
-               <div class="main-header">
-                  <h4>{{name}}</h4>
+               <div class="main-header" v-for="user in userProfile" :key="user.id">
+                  <h4> 🗣 {{user.firstname}} {{user.lastname}}</h4>
                </div>
             </div>
             <!-- 4-blocks row start -->
@@ -58,58 +58,6 @@
             </div>
             <!-- 4-blocks row end -->
 
-            <!-- 1-3-block row start -->
-            <div class="row">
-               <div class="col-lg-4">
-                  <div class="card">
-                     <div class="user-block-2">
-                        <img class="img-fluid" src="assets/images/widget/user-1.png" alt="user-header">
-                        <h5>Josephin Villa</h5>
-                        <h6>Software Engineer</h6>
-                     </div>
-                     <div class="card-block">
-                        <div class="user-block-2-activities">
-                           <div class="user-block-2-active">
-                              <i class="icofont icofont-users"></i> Department
-                              <label class="label label-primary">School Of Computer Science</label>
-                           </div>
-                        </div>
-
-                        <div class="user-block-2-activities">
-                           <div class="user-block-2-active">
-                              <i class="icofont icofont-ui-user"></i> Course
-                              <label class="label label-primary">Information Technology</label>
-                           </div>
-
-                        </div>
-                        <div class="user-block-2-activities">
-                           <div class="user-block-2-active">
-                              <i class="icofont icofont-picture"></i> Year Completed
-                              <label class="label label-primary">2017</label>
-                           </div>
-                        </div>
-                        <div class="text-center">
-                           <button type="button" class="btn btn-primary waves-effect waves-light text-uppercase">
-                                    Message
-                                </button>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-lg-8">
-                  <div class="card">
-                     <div class="card-header">
-                        <h5 class="card-header-text">Bar chart</h5>
-                     </div>
-                     <div class="card-block">
-                        <div id="barchart" style="min-width: 250px; height: 330px; margin: 0 auto"></div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <!-- 1-3-block row end -->
-
-            <!-- 2-1 block start -->
             <div class="row">
                <div class="col-xl-12 col-lg-12">
                   <div class="card">
@@ -160,14 +108,14 @@
 </template>
 <script>
 import studentHeader from '../components/studentsidebar.vue'
-import {fb} from '../firebase'
+import {fb,db} from '../firebase'
 export default {
    components:{
       studentHeader
    },
    data() {
        return {
-          userProfile:{}
+          userProfile:[]
        }
     },
     methods: {
@@ -176,15 +124,18 @@ export default {
           this.$router.push('/')
        }
     },
-    created(){
-        let user = fb.auth().currentUser
+
+     mounted() {
+       let user = fb.auth().currentUser;
         let uid = user.uid;
         this.name = user.email
-        
-    },
-    mounted() {
-       
-    },
+
+       db.collection("users").doc(user.uid).get()
+         .then((doc)=>{
+            this.userProfile.push(doc.data())
+        });
+   },
+ 
 }
 </script>
   

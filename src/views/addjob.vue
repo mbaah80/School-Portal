@@ -80,7 +80,7 @@
                                 <div class="form-group row">
                                     <div class="col-md-9">
                                         <button type="submit" class="btn btn-warning waves-effect waves-light" style="margin-top:20px; margin-left:90%; width:300px">
-                                            Post
+                                             <span id="hideText">Post</span><i class="icofont icofont-refresh" id="spinner" style="color:#fff; margin-left:10px; display:none"> Loading...</i>
                                         </button>
                                     </div>
                                 </div>
@@ -106,6 +106,7 @@
     </div>
 </template>
 <script>
+import {db} from '../firebase'
 import Header from '../components/header.vue'
 export default {
    components:{
@@ -124,12 +125,42 @@ export default {
    },
    methods: {
        jobAdd(){
-           if(this.title =="" && this.salary == "" && this.date =="" && this.venue == null && this.description ==null){
-               alert("Some fields are empty")
-               return false
-           }else{
-               alert('data is sent')
-           }
+          $('#spinner').show()
+			$('#hideText').hide()
+            let user = fb.auth().currentUser;
+            let uid = user.uid;
+          db.collection('job').add({
+              uid:user.uid,
+              title:this.title,
+              company:this.company,
+              email:this.email,
+              salary:this.salary,
+              date:this.date,
+              venue:this.venue,
+              description:this.description
+          }).then((res)=>{
+              this.company=""
+              this.title = ""
+              this.email = ""
+              this.salary = ""
+              this.venue =""
+              this.date = ""
+              this.description = ""
+              $('#spinner').hide()
+			$('#hideText').show()
+             this.$toast.success('Job Posted Successful');
+          }).catch((err)=>{
+              this.$toast.error('Internal Server Error');
+              $('#spinner').hide()
+			$('#hideText').show()
+            this.company =""
+             this.title = ""
+              this.email = ""
+              this.salary = ""
+              this.venue =""
+              this.date = ""
+              this.description = ""
+          })
        }
    },
 }
