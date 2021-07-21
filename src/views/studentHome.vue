@@ -6,7 +6,7 @@
       </div>
    </div>
    <div class="wrapper">
-   <Header></Header>
+   <studentHeader></studentHeader>
      
       <div class="content-wrapper">
          <!-- Container-fluid starts -->
@@ -21,10 +21,19 @@
             <div class="row dashboard-header">
                <div class="col-lg-3 col-md-6">
                   <div class="card dashboard-product">
-                     <span>Total Request</span>
+                     <span>Events</span>
                      <h2 class="dashboard-total-products">4500</h2>
                      <div class="side-box">
                         <i class="ti-signal text-warning-color"></i>
+                     </div>
+                  </div>
+               </div>
+                 <div class="col-lg-3 col-md-6">
+                  <div class="card dashboard-product">
+                     <span>Jobs</span>
+                     <h2 class="dashboard-total-products">$<span>30,780</span></h2>
+                     <div class="side-box">
+                        <i class="ti-direction-alt text-success-color"></i>
                      </div>
                   </div>
                </div>
@@ -34,15 +43,6 @@
                      <h2 class="dashboard-total-products">37,500</h2>
                      <div class="side-box ">
                         <i class="ti-gift text-primary-color"></i>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-lg-3 col-md-6">
-                  <div class="card dashboard-product">
-                     <span>Requested Recommendation & Other Files</span>
-                     <h2 class="dashboard-total-products">$<span>30,780</span></h2>
-                     <div class="side-box">
-                        <i class="ti-direction-alt text-success-color"></i>
                      </div>
                   </div>
                </div>
@@ -159,10 +159,10 @@
 
 </template>
 <script>
-import Header from '../components/header.vue'
+import studentHeader from '../components/studentsidebar.vue'
 export default {
    components:{
-      Header
+      studentHeader
    }
 }
 </script>

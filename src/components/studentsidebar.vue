@@ -2,7 +2,7 @@
  <div>
             <!-- Navbar-->
       <header class="main-header-top hidden-print">
-         <router-link to="/admin"  class="logo">Admin Portal</router-link>
+         <router-link to="/studentHome"  class="logo">Alumni Portal</router-link>
          <nav class="navbar navbar-static-top">
             <!-- Sidebar toggle button-->
          
@@ -42,33 +42,28 @@
             <ul class="sidebar-menu">
                 
                 <li class="treeview active" style="margin-top:50px">
-                    <router-link class="waves-effect waves-dark" to="/admin">
+                    <router-link class="waves-effect waves-dark" to="/studentHome">
                         <i class="icon-speedometer"></i><span> Dashboard</span>
                     </router-link>                
                 </li>
                  <li class="treeview">
-                    <router-link class="waves-effect waves-dark" to="/alumni">
-                      <i class="icon-book-open"></i><span>Alumni</span>
+                    <router-link class="waves-effect waves-dark" to="/transcript">
+                      <i class="icon-book-open"></i><span> Transcript</span>
                     </router-link>                
                 </li>
               <li class="treeview">
-                    <router-link class="waves-effect waves-dark" to="/adminevents">
+                    <router-link class="waves-effect waves-dark" to="/events">
                         <i class="icon-list"></i><span> Events</span>
                     </router-link>                
                 </li>
                  <li class="treeview">
-                    <router-link class="waves-effect waves-dark" to="/adminjob">
+                    <router-link class="waves-effect waves-dark" to="/jobs">
                      <i class="icon-briefcase"></i><span> Jobs</span>
                     </router-link>                
                 </li>
                  <li class="treeview">
-                    <router-link class="waves-effect waves-dark" to="/forum">
+                    <router-link class="waves-effect waves-dark" to="/transcript">
                       <i class="icon-bubbles"></i><span>Forum</span>
-                    </router-link>                
-                </li>
-                <li class="treeview">
-                    <router-link class="waves-effect waves-dark" to="/users">
-                      <i class="icon-user"></i><span>Users</span>
                     </router-link>                
                 </li>
             </ul>

@@ -15,16 +15,17 @@
 						<h3 class="text-center txt-primary">
 							Sign In to your account
 						</h3>
-						<div class="row">
+						<form @submit.prevent="login">
+							<div class="row">
 							<div class="col-md-12">
 								<div class="md-input-wrapper">
-									<input type="email" class="md-form-control" required="required"/>
+									<input type="email" v-model="email" class="md-form-control" required="required"/>
 									<label>Email</label>
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="md-input-wrapper">
-									<input type="password" class="md-form-control" required="required"/>
+									<input type="password" v-model="password" class="md-form-control" required="required"/>
 									<label>Password</label>
 								</div>
 							</div>
@@ -39,18 +40,20 @@
 							</div>
 								</div>
 							<div class="col-sm-6 col-xs-12 forgot-phone text-right">
-								<a href="forgot-password.html" class="text-right f-w-600"> Forget Password?</a>
+								<router-link to="/forgot-password" class="text-right f-w-600"> Forget Password?</router-link>
 								</div>
 						</div>
 						<div class="row">
 							<div class="col-xs-10 offset-xs-1">
-								<button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">LOGIN</button>
+								<button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light m-b-20">Login
+										</button>
 							</div>
 						</div>
+						</form>
 						<!-- <div class="card-footer"> -->
 						<div class="col-sm-12 col-xs-12 text-center">
 							<span class="text-muted">Don't have an account?</span>
-							<a href="register2.html" class="f-w-600 p-l-5">Sign up Now</a>
+							<router-link to="/register" class="f-w-600 p-l-5">Sign up Now</router-link>
 						</div>
 
 						<!-- </div> -->
@@ -66,54 +69,33 @@
 	<!-- end of container-fluid -->
 </section>
 
-<!-- Warning Section Starts -->
-<!-- Older IE warning message -->
-<!--[if lt IE 9]>
-<div class="ie-warning">
-	<h1>Warning!!</h1>
-	<p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
-	<div class="iew-container">
-		<ul class="iew-download">
-			<li>
-				<a href="http://www.google.com/chrome/">
-					<img src="assets/images/browser/chrome.png" alt="Chrome">
-					<div>Chrome</div>
-				</a>
-			</li>
-			<li>
-				<a href="https://www.mozilla.org/en-US/firefox/new/">
-					<img src="assets/images/browser/firefox.png" alt="Firefox">
-					<div>Firefox</div>
-				</a>
-			</li>
-			<li>
-				<a href="http://www.opera.com">
-					<img src="assets/images/browser/opera.png" alt="Opera">
-					<div>Opera</div>
-				</a>
-			</li>
-			<li>
-				<a href="https://www.apple.com/safari/">
-					<img src="assets/images/browser/safari.png" alt="Safari">
-					<div>Safari</div>
-				</a>
-			</li>
-			<li>
-				<a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-					<img src="assets/images/browser/ie.png" alt="">
-					<div>IE (9 & above)</div>
-				</a>
-			</li>
-		</ul>
-	</div>
-	<p>Sorry for the inconvenience!</p>
-</div>
-<![endif]-->
-<!-- Warning Section Ends -->
-<!-- Required Jqurey -->
-
-
-
-
 </div>
 </template>
+
+<script>
+import firebase from 'firebase'
+export default {
+	data() {
+		return {
+			email:'',
+			password:''
+		}
+	},
+	methods: {
+		login(){
+			firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+			.then((res)=>{
+				alert(res.data)
+				 	// this.$router.push('/studentHome')
+				// if(res.email == admin){
+				// 	this.$router.push('/admin')
+				// }else{
+				// 	this.$router.push('/studentHome')
+				// }
+			}).catch((err)=>{
+				alert(err)
+			})
+		}
+	},
+}
+</script>
