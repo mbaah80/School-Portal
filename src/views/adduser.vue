@@ -111,13 +111,14 @@
 </template>
 <script>
 import Header from '../components/header.vue'
+import {fb, db} from '../firebase'
 export default {
    components:{
       Header
    },
    data() {
        return {
-           firstname:'',
+           name:'',
            lastname:'',
            department:'',
            email:'',
@@ -130,12 +131,22 @@ export default {
        addUser(){
         	$('#spinner').show()
 			$('#hideText').hide()
+
+            //  let admin = {
+            //     role: {
+            //         admin: true,
+            //         },
+            // }
 			fb.auth().createUserWithEmailAndPassword(this.email, this.password)
 			.then((res)=>{
-				
+				//    if (res) {
+                //         const setAdmin = firebase.functions().httpsCallable("setAdmin");
+                //         const data = { uid: res.user.uid, role: admin.role };
+                //         setAdmin(data)
+                //     }
 				db.collection('admin').doc(res.user.uid).set({
-					firstname:this.firstname,
-					lastname:this.lastname,
+                    email:this.email,
+					name:this.name,
 					department:this.department,
 					contact:this.contact,
 					position:this.position
@@ -143,8 +154,7 @@ export default {
 				})
 				this.email = ""
 				this.password = ""
-				this.firstname = ""
-				this.lastname = ""
+				this.name = ""
 				this.department = ""
 				this.contact = ""
                 this.position=""
@@ -154,8 +164,7 @@ export default {
 				this.$toast.error(err.message);
 			    this.email = ""
 				this.password = ""
-				this.firstname = ""
-				this.lastname = ""
+				this.name = ""
 				this.department = ""
 				this.contact = ""
                 this.position=""

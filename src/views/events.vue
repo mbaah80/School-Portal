@@ -23,38 +23,39 @@
             <!-- Header ends -->
 
             <!-- Row start -->
-            <div class="row">
-            <div class="col-lg-2">
+             <div class="row">
+            <div class="col-lg-3">
                </div>
                <!-- Multiple Open Accordion start -->
-               <div class="col-lg-8">
-                  <div class="card" >
-                    
+               <div class="col-lg-6">
+                  <div class="card" >                   
                      <div class="card-block accordion-block">
                         <div id="accordion" role="tablist" aria-multiselectable="true">
-                           <div class="accordion-panel" v-for="event in events" :key="event.id">
-                              <div class="accordion-heading" role="tab" id="headingOne">
-                                 <h3 class="card-title accordion-title">
-                                    <a  class="accordion-msg" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                       {{event.title}}
-                                    </a>
-                              </h3>
+                         <div class="accordion-panel" v-for="ev in events" :key="ev.id">
+                              <div class="accordion-heading" role="tab" id="headingTwo">
+                                 <h2 class="card-title accordion-title">
+                                <a  class="accordion-msg" data-toggle="collapse" data-parent="#accordion"   :href="'#collapseTwo'+index" aria-expanded="true" aria-controls="collapseOne">
+                                    <div class="row">
+                                       <div class="col-md-10"> <h3>{{ev.title}}</h3></div>
+                                    </div>
+                                </a>
+                              </h2>
                               </div>
-                              <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                              <div :id="'collapseTwo'+index" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                  <div class="accordion-content accordion-desc">
-                                 <div class="row">
-                                    <div class="col-md-4">
-                                       <p>{{event.time}}</p>
+                                  <div class="row" style="margin-top:15px; margin-bottom:15px">
+                                     <div class="col-md-4">
+                                       <h6><span>Event Time </span> {{ev.time}}</h6>
                                     </div>
                                      <div class="col-md-4">
-                                       <p>{{event.date}}</p>
+                                       <h6><span>Event Date </span>{{ev.date}}</h6>
                                     </div>
-                                     <div class="col-md-4">
-                                       <p>{{event.vunue}}</p>
+                                      <div class="col-md-4">
+                                       <h6><span>Event Venue </span> {{ev.venue}}</h6>
                                     </div>
                                  </div>
                                     <p>
-                                     {{event.description}}
+                                    <span>Job Decription </span> <br>  {{ev.description}}
                                     </p>
                                  </div>
                               </div>
@@ -66,7 +67,7 @@
                <!-- Multiple Open Accordion ends -->
 
                <!-- Single Open Accordion start -->
-               <div class="col-lg-2">
+               <div class="col-lg-3">
                </div>
                <!-- Single Open Accordion ends -->
             </div>
@@ -108,3 +109,14 @@ export default {
    },
 }
 </script>
+
+<style scoped>
+span{
+color: rgb(221, 157, 19);
+font-weight: bolder;
+}
+small{
+font-weight: bolder;
+color: rgb(221, 157, 19);
+}
+</style>

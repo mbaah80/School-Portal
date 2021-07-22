@@ -22,7 +22,7 @@
             </div>
             <!-- Header ends -->
 
-            <!-- Row start -->
+              <!-- Row start -->
             <div class="row">
                <!-- Multiple Open Accordion start -->
                 <div class="col-lg-3">
@@ -33,35 +33,40 @@
                         <div id="accordion" role="tablist" aria-multiselectable="true">
                            <div class="accordion-panel" v-for="job in jobs" :key="job.id">
                               <div class="accordion-heading" role="tab" id="headingTwo">
-                                 <h3 class="card-title accordion-title">
-                                <a  class="accordion-msg" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
-                                    {{job.title}}
+                                 <h2 class="card-title accordion-title">
+                                <a  class="accordion-msg" data-toggle="collapse" data-parent="#accordion"   :href="'#collapseTwo'+index" aria-expanded="true" aria-controls="collapseOne">
+                                    <div class="row">
+                                       <div class="col-md-10"> <h3>{{job.title}}</h3></div>
+                                       <div class="col-md-2"><small>Job Offer</small></div>
+                                    </div>
+                                   
+                                    
                                 </a>
-                            </h3>
+                              </h2>
                               </div>
-                              <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                              <div :id="'collapseTwo'+index" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                  <div class="accordion-content accordion-desc">
                                   <div class="row">
-                                    <div class="col-md-4">
-                                       <p>{{job.company}}</p>
+                                    <div class="col-md-8">
+                                     <h6> <span> Company:</span> <br>{{job.company}}</h6>
                                     </div>
                                      <div class="col-md-4">
-                                       <p>{{job.salary}}</p>
+                                       <h6><span >GHS</span>{{job.salary}}</h6>
                                     </div>
                                  </div>
-                                  <div class="row">
+                                  <div class="row" style="margin-top:15px; margin-bottom:15px">
                                      <div class="col-md-4">
-                                       <p><span>Apply Email</span>{{job.email}}</p>
+                                       <h6><span>Apply Email </span> {{job.email}}</h6>
                                     </div>
                                      <div class="col-md-4">
-                                       <p><span>Company Location </span>{{job.vunue}}</p>
+                                       <h6><span>Company Location </span>{{job.venue}}</h6>
                                     </div>
                                       <div class="col-md-4">
-                                       <p><span>Deadline</span> {{job.date}}</p>
+                                       <h6><span>Deadline </span> {{job.date}}</h6>
                                     </div>
                                  </div>
                                     <p>
-                                    <span>Job Decription</span>  {{job.description}}
+                                    <span>Job Decription </span> <br>  {{job.description}}
                                     </p>
                                  </div>
                               </div>
@@ -118,5 +123,9 @@ export default {
 span{
 color: rgb(221, 157, 19);
 font-weight: bolder;
+}
+small{
+font-weight: bolder;
+color: rgb(221, 157, 19);
 }
 </style>

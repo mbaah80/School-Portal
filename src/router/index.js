@@ -15,6 +15,7 @@ import alumni from '../views/alumni.vue'
 import users from '../views/users.vue'
 import Register from '../views/register.vue'
 import forgotPassword from '../views/forgot-password.vue'
+import lecturer from '../views/lecturer.vue'
 import request from '../views/request.vue'
 import Profile from '../views/profile.vue'
 import {fb} from '../firebase'
@@ -81,6 +82,12 @@ const router = createRouter({
       path:'/users',
       name:'users',
       component:users,
+      meta:{requiresAuth: true},
+    },
+    {
+      path:'/lecturer',
+      name:'lecturer',
+      component:lecturer,
       meta:{requiresAuth: true},
     },
     {

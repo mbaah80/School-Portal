@@ -40,7 +40,7 @@
                 
                 <li class="treeview active" style="margin-top:50px">
                     <router-link class="waves-effect waves-dark" to="/studentHome">
-                        <i class="icon-speedometer"></i><span> Dashboard</span>
+                        <i class="icon-home"></i><span> Dashboard</span>
                     </router-link>                
                 </li>
                  <li class="treeview">
@@ -48,9 +48,14 @@
                       <i class="icon-book-open"></i><span> Transcript</span>
                     </router-link>                
                 </li>
+                 <li class="treeview">
+                    <router-link class="waves-effect waves-dark" to="/lecturer">
+                      <i class="icon-user"></i><span> Lecturers</span>
+                    </router-link>                
+                </li>
                   <li class="treeview">
                     <router-link class="waves-effect waves-dark" to="/request">
-                      <i class="icon-book-open"></i><span> Request</span>
+                      <i class="icon-speedometer"></i><span> Request</span>
                     </router-link>                
                 </li>
               <li class="treeview">

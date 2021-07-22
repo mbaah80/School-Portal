@@ -49,7 +49,7 @@
                                        <td>{{alumni.department}}</td>
                                        <td>{{alumni.course}}</td>
                                        <td>{{alumni.year}}</td>
-                                       <td><button type="button" class="btn btn-primary waves-effect waves-light">View</button></td>
+                                       <td><router-link to="" type="button" class="btn btn-primary waves-effect waves-light">View</router-link></td>
                                     </tr>
                                    
                                  </tbody>
@@ -74,6 +74,7 @@
 </template>
 <script>
 import Header from '../components/header.vue'
+import {fb,db} from '../firebase'
 export default {
    components:{
       Header

@@ -49,7 +49,7 @@
                                   <div class="form-group row">
                                     <label for="e-email" class="col-md-2 col-form-label form-control-label">Apply Email</label>
                                     <div class="col-md-10">
-                                        <input type="text" id="e-email" v-model="title" class="form-control" >
+                                        <input type="text" id="e-email" v-model="email" class="form-control" >
                                     </div>
                                 </div>
                                    <div class="form-group row">
@@ -106,7 +106,7 @@
     </div>
 </template>
 <script>
-import {db} from '../firebase'
+import {fb,db} from '../firebase'
 import Header from '../components/header.vue'
 export default {
    components:{

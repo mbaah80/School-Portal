@@ -3,6 +3,8 @@ import firebase, { firestore } from 'firebase'
 import 'firebase/storage'
 import 'firebase/auth'
 import 'firebase/firestore'
+import 'firebase/firebase-functions'
+
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyCyyYoTfmDhgqL2PvVfmLNh33W4-uoD0nI",
@@ -17,5 +19,6 @@ import 'firebase/firestore'
   const fb = firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
   const st = firebase.storage();
+  const admin = firebase.functions()
 
-  export {fb,db,st}
+  export {fb,db,st, admin}
