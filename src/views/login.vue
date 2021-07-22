@@ -19,13 +19,15 @@
 							<div class="row">
 							<div class="col-md-12">
 								<div class="md-input-wrapper">
-									<input type="email" v-model="email" class="md-form-control" required="required"/>
+									<input type="email" v-model="email" class="md-form-control"/>
+									 <span v-if="msg.email" style="color:red;  margin-top:5px">{{msg.email}}</span>
 									<label>Email</label>
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="md-input-wrapper">
-									<input type="password" v-model="password" class="md-form-control" required="required"/>
+									<input type="password" v-model="password" class="md-form-control"/>
+									<span v-if="msg.password" style="color:red; margin-top:5px">{{msg.password}}</span>
 									<label>Password</label>
 								</div>
 							</div>
@@ -73,29 +75,52 @@
 </template>
 
 <script>
-import {fb,db} from '../firebase'
+import {fb, db} from '../firebase'
 export default {
 	data() {
 		return {
 			email:'',
-			password:''
+			password:'',
+			 msg:[],
 		}
 	},
+	
 	methods: {
 		login(){
+			 const emailRegex= /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.email);
+           
+          //email
+           if(this.email ==""){
+              this.msg['email']="Enter email address";
+              return false
+          }else if(!emailRegex){
+              this.msg['email']="Invalid email address";
+              return false
+          }else{
+              this.msg['email']=""
+          }
+          //password
+           if(this.password ==""){
+              this.msg['password']="Enter password";
+              return false
+          }else if(this.password.length < 8){
+			  this.msg['password']=" Password must have 8 characters or more.";
+			  return false
+		  }else{
+              this.msg['password']=""
+          }
 			$('#spinner').show()
 			$('#hideText').hide()
 			fb.auth().signInWithEmailAndPassword(this.email, this.password)
 			.then((res)=>{
-				this.$router.push('/admin')
 				
-				// if(res.admin){
-				// 	this.$router.push('/admin')
-				// 	 this.$toast.success('Admin Logging In');
-				// }else{
-				// 	this.$router.push('/studentHome')
-				// 	 this.$toast.success('Alumni Logging In');
-				// }
+				if(res.admin){
+					this.$router.push('/admin')
+					 this.$toast.success('Admin Logging In');
+				}else{
+					this.$router.push('/studentHome')
+					 this.$toast.success('Alumni Logging In');
+				}
 				this.email = ""
 				this.password = ""
 			}).catch((err)=>{

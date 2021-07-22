@@ -165,6 +165,7 @@ export default {
 			    this.email = ""
 				this.password = ""
 				this.name = ""
+				this.lastname = ""
 				this.department = ""
 				this.contact = ""
                 this.position=""
