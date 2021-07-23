@@ -45,7 +45,7 @@
                 </li>
                  <li class="treeview">
                     <router-link class="waves-effect waves-dark" to="/transcript">
-                      <i class="icon-book-open"></i><span> Transcript</span>
+                      <i class="icon-book-open"></i><span> Files</span>
                     </router-link>                
                 </li>
                  <li class="treeview">
@@ -69,7 +69,7 @@
                     </router-link>                
                 </li>
                  <li class="treeview">
-                    <router-link class="waves-effect waves-dark" to="/transcript">
+                    <router-link class="waves-effect waves-dark" to="/enterChat">
                       <i class="icon-bubbles"></i><span>Forum</span>
                     </router-link>                
                 </li>

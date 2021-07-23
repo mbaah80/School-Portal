@@ -17,7 +17,7 @@
                <div class="col-sm-12 p-0">
                   <div class="main-header">
                      <h4>Files Recieved</h4>
-                     <router-link to="/transcriptRequest" type="button" class="btn btn-warning waves-effect waves-light" style="margin-left:80%">Request Transcript </router-link>
+                     <router-link to="/transcriptRequest" type="button" class="btn btn-warning waves-effect waves-light" style="margin-left:80%">Request Files </router-link>
                   </div>
                </div>
             </div>

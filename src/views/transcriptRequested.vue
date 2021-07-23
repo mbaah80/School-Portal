@@ -118,11 +118,13 @@ export default {
            department:'',
            course:'',
            fileType:'',
-           date:''
+           date:'',
+           createdAt:Date.now()
        }
    },
    methods: {
        requestFile(){
+          
            $('#spinner').show()
 			$('#hideText').hide()
             let user = fb.auth().currentUser;
@@ -133,7 +135,8 @@ export default {
               department:this.department,
               course:this.course,
               fileType:this.fileType,
-              date:this.date
+              date:this.date,
+              createdAt:this.createdAt
           }).then((res)=>{
 
               this.name = ""

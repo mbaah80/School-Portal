@@ -20,5 +20,4 @@ import 'firebase/firebase-functions'
   const db = firebase.firestore();
   const st = firebase.storage();
   const admin = firebase.functions()
-
   export {fb,db,st, admin}

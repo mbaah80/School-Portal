@@ -43,7 +43,7 @@
                                  </thead>
                                  <tbody>
                                     <tr v-for="user in users" :key="user.id">
-                                       <td>{{user.firstname}} {{user.lastname}}</td>
+                                       <td>{{user.name}}</td>
                                        <td>{{user.position}}</td>
                                        <td>{{user.department}}</td>
                                        <td>{{user.email}}</td>

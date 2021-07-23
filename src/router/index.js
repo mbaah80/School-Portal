@@ -18,6 +18,8 @@ import forgotPassword from '../views/forgot-password.vue'
 import lecturer from '../views/lecturer.vue'
 import request from '../views/request.vue'
 import Profile from '../views/profile.vue'
+import Chat from '../views/chat.vue'
+import enterChat from '../views/enterChat.vue'
 import {fb} from '../firebase'
 
 const router = createRouter({
@@ -130,6 +132,17 @@ const router = createRouter({
       path:'/events',
       name:'Events',
       component:Events,
+      meta:{requiresAuth: true},
+    },{
+      path:'/chat',
+      name:'Chat',
+      component:Chat,
+      meta:{requiresAuth: true},
+    },
+    {
+      path:'/enterChat',
+      name:'enterChat',
+      component:enterChat,
       meta:{requiresAuth: true},
     }
   ]

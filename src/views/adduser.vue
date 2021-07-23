@@ -124,7 +124,8 @@ export default {
            email:'',
            contact:'',
            position:'',
-           password:''
+           password:'',
+           createdAt:Date.now()
        }
    },
    methods: {
@@ -149,7 +150,8 @@ export default {
 					name:this.name,
 					department:this.department,
 					contact:this.contact,
-					position:this.position
+					position:this.position,
+                    createdAt:this.createdAt
 					
 				})
 				this.email = ""

@@ -108,7 +108,8 @@ export default {
            time:'',
            date:'',
            venue:'',
-           description:''
+           description:'',
+           createdAt:Date.now()
        }
    },
    methods: {
@@ -123,7 +124,8 @@ export default {
               time:this.time,
               date:this.date,
               venue:this.venue,
-              description:this.description
+              description:this.description,
+              createdAt:this.createdAt
           }).then((res)=>{
 
               this.title = ""

@@ -50,7 +50,7 @@
                                        <td>{{req.course}}</td>
                                        <td>{{req.fileType}}</td>
                                        <td>{{req.date}}</td>
-                                       <td>{{req.date}}</td>
+                                       <td>{{dateNow}}</td>
                                     </tr>
                                    
                                  </tbody>
@@ -76,13 +76,15 @@
 <script>
 import studentHeader from '../components/studentsidebar.vue'
 import {fb,db} from '../firebase'
+import moment from 'moment'
 export default {
    components:{
       studentHeader
    },
    data() {
        return {
-           request:[]
+           request:[],
+           dateNow:{}
        }
    },
    mounted() {
@@ -94,6 +96,8 @@ export default {
          .then((querySnapshot)=>{
           querySnapshot.forEach((doc)=>{
              this.request.push(doc.data());
+             const serverDate = doc.data().createdAt
+             this.dateNow = moment(serverDate).format('LLLL')
           });
         });
    },

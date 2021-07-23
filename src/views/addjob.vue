@@ -120,7 +120,8 @@ export default {
            salary:'',
            date:'',
            venue:'',
-           description:''
+           description:'',
+           createdAt:Date.now()
        }
    },
    methods: {
@@ -137,7 +138,8 @@ export default {
               salary:this.salary,
               date:this.date,
               venue:this.venue,
-              description:this.description
+              description:this.description,
+              createdAt:this.createdAt
           }).then((res)=>{
               this.company=""
               this.title = ""

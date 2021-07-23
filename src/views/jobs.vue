@@ -37,7 +37,7 @@
                                 <a  class="accordion-msg" data-toggle="collapse" data-parent="#accordion"   :href="'#collapseTwo'+index" aria-expanded="true" aria-controls="collapseOne">
                                     <div class="row">
                                        <div class="col-md-10"> <h3>{{job.title}}</h3></div>
-                                       <div class="col-md-2"><small>Job Offer</small></div>
+                                       <div class="col-md-2"><small>{{dateNow}}</small></div>
                                     </div>
                                    
                                     
@@ -96,13 +96,15 @@
 <script>
 import studentHeader from '../components/studentsidebar.vue'
 import {fb, db} from '../firebase'
+import moment from 'moment'
 export default {
    components:{
       studentHeader
    },
     data() {
       return {
-         jobs:[]
+         jobs:[],
+           dateNow:{}
       }
    },
     mounted() {
@@ -114,6 +116,8 @@ export default {
          .then((querySnapshot)=>{
           querySnapshot.forEach((doc)=>{
              this.jobs.push(doc.data());
+              const serverDate = doc.data().createdAt
+             this.dateNow = moment(serverDate).format('LLLL')
           });
         });
    },
