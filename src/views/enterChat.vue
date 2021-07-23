@@ -34,7 +34,7 @@
                                             <div class="row">
                                             <div class="col-md-12">
                                                 <div class="md-input-wrapper">
-                                                    <input type="text" v-model="name" class="md-form-control" placeholder="John Doe"/>
+                                                    <input type="text" v-model="name" name="name" class="md-form-control" placeholder="John Doe"/>
                                                     <label>Enter Fullname</label>
                                                      <span v-if="msg.name" style="color:red;  margin-top:5px">{{msg.name}}</span>
                                                 </div>
@@ -42,7 +42,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-10 offset-xs-1">
-                                                <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light m-b-20"> <span id="hideText">Enter Chatroom</span><i class="icofont icofont-refresh" id="spinner" style="color:#fff; margin-left:10px; display:none"> Loading...</i>
+                                                <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light m-b-20"> Enter Chatroom
                                                 </button>
                                             </div>
                                         </div>
@@ -87,8 +87,8 @@ export default {
           }
 
           if(this.name){
-              this.$router.push({name: 'Chat', params:{name:this.name}})
-          }{
+              this.$router.push({name: 'Chat', params:{name: this.name}})
+          }else{
                this.msg['name']="Enter your name";
           }
        }

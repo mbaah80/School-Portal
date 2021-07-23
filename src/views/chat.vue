@@ -30,37 +30,29 @@
                   <div class="row">
                            <div class="col-sm-12 table-responsive">
                               <div class="showChat_inner" style="display: inline; height:70%;width:70%; margin-top:5%; margin-right:8%">
-                                <form @submit.prevent="chat">
-                                    <div class="media chat-inner-header">
+                                <div >
+                                   <div v-for="message in messages" :key="message.id">
+                                         <div class="media chat-inner-header">
                             
-                            </div>
-                            <div class="media chat-messages">
-                                <a class="media-left photo-table" href="#!">
-                                <img class="media-object img-circle m-t-5" src="assets/images/avatar-1.png" alt="Generic placeholder image">
-                                <div class="live-status bg-success"></div>
-                                </a>
-                                <div class="media-body chat-menu-content">
-                                <div class="">
-                                    <p class="chat-cont">I'm just looking around. Will you tell me something about yourself?</p>
-                                    <p class="chat-time">8:20 a.m.</p>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="media chat-reply-box">
-                                <div class="md-input-wrapper">
-                                <input type="text" class="md-form-control" id="inputEmail" name="inputEmail">
-                                <label>Share your thoughts</label>
-                                <span class="highlight"></span>
-                                <span class="bar"></span> 
-                                <button type="button" class="chat-send waves-effect waves-light">
-                                        <i class="icofont icofont-location-arrow f-20 "></i>
-                                    </button>
+                                        </div>
+                                        <div class="media chat-messages">
+                                            <a class="media-left photo-table" href="#!">
+                                           
+                                            </a>
+                                            <div class="media-body chat-menu-content">
+                                            <div class="">
+                                             <p class="chat-cont">[{{message.name}}] <span>{{message.newMessage}}</span> {{dateNow}}</p>
+                                            </div>
+                                            </div>
+                                        </div>
+                                   </div>
 
-                                <span class="md-line"></span></div>
+                                </div>
 
+                               <div>
+                                 <CreateMessage  :name="name"> </CreateMessage>
+                               </div>
                             </div>
-                                </form>
-      </div>
                            </div>
                         </div>
                
@@ -79,9 +71,37 @@
 </template>
 <script>
 import studentHeader from '../components/studentsidebar.vue'
+import CreateMessage from '../components/createchat.vue'
+import { db} from '../firebase'
+import moment from 'moment'
 export default {
-     components:{
-      studentHeader
+    components:{
+          studentHeader,
+          CreateMessage
+    },
+   name:"Chat",
+   props:['name'],
+   data() {
+       return {
+           messages:[],
+           dateNow:{}
+       }
+   },
+   created() {
+        db.collection('message').get()
+        .then((querySnapshot)=>{
+          querySnapshot.forEach((doc)=>{
+             this.messages.push(doc.data());
+             const serverDate = doc.data().createdAt
+             this.dateNow = moment(serverDate).format('LLL')
+          });
+        });
    },
 }
 </script>
+<style scoped>
+span{
+    color:rgb(224, 114, 24);
+    font-weight: bolder;
+}
+</style>
