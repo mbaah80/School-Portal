@@ -43,7 +43,12 @@
                 </li>
                  <li class="treeview">
                     <router-link class="waves-effect waves-dark" to="/alumni">
-                      <i class="icon-users"></i><span>Alumni</span>
+                      <i class="icon-user"></i><span>Alumni</span>
+                    </router-link>                
+                </li>
+                 <li class="treeview">
+                    <router-link class="waves-effect waves-dark" to="/studentsRequest">
+                      <i class="icon-user"></i><span>Request</span>
                     </router-link>                
                 </li>
               <li class="treeview">

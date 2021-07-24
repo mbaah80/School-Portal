@@ -113,7 +113,7 @@ export default {
 			$('#hideText').hide()
 			fb.auth().signInWithEmailAndPassword(this.email, this.password)
 			.then((res)=>{
-				this.$router.push('/studentHome')
+				this.$router.push('/admin')
 				// if(res.admin){
 				// 	this.$router.push('/admin')
 				// 	 this.$toast.success('Admin Logging In');

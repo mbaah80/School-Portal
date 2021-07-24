@@ -38,8 +38,7 @@
                                  <h2 class="card-title accordion-title">
                                 <a  class="accordion-msg" data-toggle="collapse" data-parent="#accordion"   :href="'#collapseTwo'+index" aria-expanded="true" aria-controls="collapseOne">
                                     <div class="row">
-                                       <div class="col-md-8"> <h3>{{job.title}}</h3></div>
-                                         <div class="col-md-2"> <h3>{{dateNow}}</h3></div>
+                                       <div class="col-md-10"> <h3>{{job.title}}</h3></div>
                                        <div class="col-md-2"><small style="color:#fff" type="button" class="btn btn-danger waves-effect waves-light disabled">Delete</small></div>
                                     </div>
                                    
@@ -70,7 +69,8 @@
                                  </div>
                                     <p>
                                     <span>Job Decription </span> <br>  {{job.description}}
-                                    </p>
+                                    </p> <br>
+                                    <p><span>Date Posted</span> {{dateNow}}</p>
                                  </div>
                               </div>
                            </div>
