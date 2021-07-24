@@ -20,7 +20,7 @@ import request from '../views/request.vue'
 import Profile from '../views/profile.vue'
 import Chat from '../views/chat.vue'
 import enterChat from '../views/enterChat.vue'
-import studentsRequest from '../views/studentsRequest.vue'
+import StudentRequest from '../views/studentsRequest.vue'
 import {fb} from '../firebase'
 
 const router = createRouter({
@@ -150,7 +150,7 @@ const router = createRouter({
     {
       path:'/studentsRequest',
       name:'studentsRequest',
-      components:studentsRequest,
+      component:StudentRequest,
       meta:{requiresAuth:true}
     }
   ]

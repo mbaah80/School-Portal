@@ -16,7 +16,7 @@
             <div class="row">
                <div class="col-sm-12 p-0">
                   <div class="main-header">
-                     <h4>Requests</h4>
+                     <h4>Alumni List</h4>
                   </div>
                </div>
             </div>
@@ -33,24 +33,25 @@
                            <div class="col-sm-12 table-responsive">
                               <table class="table">
                                  <thead>
-                                    <tr>
-                                       
+                                      <tr>
                                        <th>Full Name</th>
                                        <th>Department</th>
                                        <th>Course</th>
                                        <th>Document Type</th>
                                        <th>Completed Year</th>
                                        <th>Request Date</th>
+                                       <th>Upload File</th>
                                     </tr>
                                  </thead>
                                  <tbody>
-                                    <tr v-for="req in requests" :key="req.id">
-                                       <td>{{req.name}}</td>
-                                       <td>{{req.department}}</td>
-                                       <td>{{req.course}}</td>
-                                       <td>{{req.fileType}}</td>
-                                       <td>{{req.date}}</td>
+                                    <tr v-for="alumni in alumnis" :key="alumni.id">
+                                       <td>{{alumni.name}}</td>
+                                       <td>{{alumni.department}}</td>
+                                       <td>{{alumni.course}}</td>
+                                       <td>{{alumni.fileType}}</td>
+                                       <td>{{alumni.date}}</td>
                                        <td>{{dateNow}}</td>
+                                       <td><router-link to="" type="button" class="btn btn-primary waves-effect waves-light">Upload</router-link></td>
                                     </tr>
                                    
                                  </tbody>
@@ -82,24 +83,24 @@ export default {
       Header
    },
    data() {
-       return {
-           requests:[],
-           dateNow:{}
-       }
+      return {
+         alumnis:[],
+         dateNow:{}
+      }
    },
-   mounted() {
+    mounted() {
        let user = fb.auth().currentUser;
         let uid = user.uid;
-       
-        
+        this.email = user.email
+
        db.collection("alumniRequest").get()
          .then((querySnapshot)=>{
           querySnapshot.forEach((doc)=>{
-             this.requests = doc.data()
-             const serverDate = doc.data().createdAt
-             this.dateNow = moment(serverDate).format('LLL')
+             this.alumnis.push(doc.data());
+              const serverDate = doc.data().createdAt
+             this.dateNow = moment(serverDate).format('LL')
           });
-        })
+        });
    },
 }
 </script>

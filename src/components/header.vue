@@ -61,11 +61,6 @@
                      <i class="icon-briefcase"></i><span> Jobs</span>
                     </router-link>                
                 </li>
-                 <li class="treeview">
-                    <router-link class="waves-effect waves-dark" to="/forum">
-                      <i class="icon-bubbles"></i><span>Forum</span>
-                    </router-link>                
-                </li>
                 <li class="treeview">
                     <router-link class="waves-effect waves-dark" to="/users">
                       <i class="icon-user"></i><span>Users</span>
