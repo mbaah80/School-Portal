@@ -21,6 +21,7 @@ import Profile from '../views/profile.vue'
 import Chat from '../views/chat.vue'
 import enterChat from '../views/enterChat.vue'
 import StudentRequest from '../views/studentsRequest.vue'
+import notfound from '../views/404.vue'
 import {fb} from '../firebase'
 
 const router = createRouter({
@@ -152,6 +153,11 @@ const router = createRouter({
       name:'studentsRequest',
       component:StudentRequest,
       meta:{requiresAuth:true}
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "404",
+      component:notfound,
     }
   ]
 })

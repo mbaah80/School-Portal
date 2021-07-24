@@ -17,7 +17,7 @@
                <div class="col-sm-12 p-0">
                   <div class="main-header">
                      <h4>Jobs</h4>
-                     <router-link to="/addjobs" type="button" class="btn btn-warning waves-effect waves-light" style="margin-left:80%">Post Job </router-link>
+                     <router-link to="/addjob" type="button" class="btn btn-warning waves-effect waves-light" style="margin-left:80%">Post Job </router-link>
                   </div>
                </div>
             </div>
