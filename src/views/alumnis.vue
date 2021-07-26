@@ -16,7 +16,7 @@
             <div class="row">
                <div class="col-sm-12 p-0">
                   <div class="main-header">
-                     <h4>{{alumni.id}}</h4>
+                     <h4>Alumni List</h4>
                   </div>
                </div>
             </div>
@@ -25,27 +25,29 @@
             <!-- Tables start -->
             <!-- Row start -->
             <div class="row">
-               <div class="col-sm-8">
+               <div class="col-sm-12">
                   <!-- Basic Table starts -->
                   <div class="card">
                      <div class="card-block">
                         <div class="row">
-                           <div class="col-sm-8 table-responsive">
+                           <div class="col-sm-12 table-responsive">
                               <table class="table">
                                  <thead>
                                     <tr>
-                                       <th>Fullname</th>
+                                       <th>Full Name</th>
                                        <th>School ID</th>
                                        <th>Course</th>
                                        <th>Completion Year</th>
+                                       <th>Option</th>
                                     </tr>
                                  </thead>
                                  <tbody>
-                                    <tr >
-                                       <td>{{alumni.id}} {{alumni.id}}</td>
+                                    <tr v-for="alumni in alumnis" :key="alumni.id">
+                                       <td>{{alumni.firstname}} {{alumni.lastname}}</td>
                                        <td>{{alumni.id}}</td>
-                                       <td>{{alumni.id}}</td>
-                                       <td>{{alumni.id}}</td>
+                                       <td>{{alumni.course}}</td>
+                                       <td>{{alumni.year}}</td>
+                                       <td><router-link :to="'/alumni/' + alumni.id" type="button" class="btn btn-primary waves-effect waves-light">View</router-link></td>
                                     </tr>
                                    
                                  </tbody>
@@ -77,8 +79,7 @@ export default {
    },
    data() {
       return {
-         id:this.$route.params.id,
-         alumni:[]
+         alumnis:[]
       }
    },
     mounted() {
@@ -86,9 +87,11 @@ export default {
         let uid = user.uid;
         this.email = user.email
 
-       db.collection("users").doc(user.uid).get()
-          .then((doc)=>{
-             this.alumni.push(doc.data());
+       db.collection("users").get()
+         .then((querySnapshot)=>{
+          querySnapshot.forEach((doc)=>{
+             this.alumnis.push(doc.data());
+          });
         });
    },
 }

@@ -12,6 +12,7 @@ import addUser from '../views/adduser.vue'
 import adminEvent from '../views/adminevents.vue'
 import adminJob from '../views/adminjob.vue'
 import alumni from '../views/alumni.vue'
+import alumnis from '../views/alumnis.vue'
 import users from '../views/users.vue'
 import Register from '../views/register.vue'
 import forgotPassword from '../views/forgot-password.vue'
@@ -95,9 +96,14 @@ const router = createRouter({
       meta:{requiresAuth: true},
     },
     {
-      path:'/alumni',
+      path:'/alumni/:id',
       name:'alumni',
       component:alumni,
+      meta:{requiresAuth: true},
+    },{
+      path:'/alumnis',
+      name:'alumnis',
+      component:alumnis,
       meta:{requiresAuth: true},
     },
     {

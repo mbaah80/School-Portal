@@ -9,12 +9,13 @@
 			<div class="col-sm-12">
 				<div class="login-card card-block">
 					<form class="md-float-material">
-						<div class="text-center">
-							<img src="assets/images/logo-black.png" alt="logo">
+						<div class="text-center txt-primary">
+							<h4>OPTUS</h4>
 						</div>
 						<h3 class="text-center txt-primary">
 							Sign In to your account
 						</h3>
+						 <span v-if="msg.loginError" class="alert alert-danger" role="alert" style="margin-bottom:50px">{{msg.loginError}}</span>
 						<form @submit.prevent="login">
 							<div class="row">
 							<div class="col-md-12">
@@ -103,10 +104,7 @@ export default {
            if(this.password ==""){
               this.msg['password']="Enter password";
               return false
-          }else if(this.password.length < 8){
-			  this.msg['password']=" Password must have 8 characters or more.";
-			  return false
-		  }else{
+          }else{
               this.msg['password']=""
           }
 			$('#spinner').show()
@@ -128,7 +126,8 @@ export default {
 				this.password = ""
 			$('#spinner').hide()
 			$('#hideText').show()
-				 this.$toast.error(err.message);
+				//  this.$toast.error(err.message);
+				  this.msg['loginError'] = err.message
 			})
 		}
 	},

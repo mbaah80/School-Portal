@@ -2,7 +2,7 @@
  <div>
             <!-- Navbar-->
       <header class="main-header-top hidden-print">
-         <router-link to="/admin"  class="logo">Admin Portal</router-link>
+         <router-link to="/admin"  class="logo">OPTUS Admin Portal</router-link>
          <nav class="navbar navbar-static-top">
             <!-- Sidebar toggle button-->
          <div class="navbar-custom-menu">
@@ -42,7 +42,7 @@
                     </router-link>                
                 </li>
                  <li class="treeview">
-                    <router-link class="waves-effect waves-dark" to="/alumni">
+                    <router-link class="waves-effect waves-dark" to="/alumnis">
                       <i class="icon-user"></i><span>Alumni</span>
                     </router-link>                
                 </li>

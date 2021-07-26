@@ -2,7 +2,7 @@
  <div>
             <!-- Navbar-->
       <header class="main-header-top hidden-print">
-         <router-link to="/studentHome"  class="logo">Alumni Portal</router-link>
+         <router-link to="/studentHome"  class="logo">OPTUS Alumni Portal</router-link>
          <nav class="navbar navbar-static-top">
             <!-- Sidebar toggle button-->
          
