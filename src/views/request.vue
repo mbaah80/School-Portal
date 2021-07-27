@@ -36,6 +36,7 @@
                                     <tr>
                                        
                                        <th>Full Name</th>
+                                       <th>School ID</th>
                                        <th>Department</th>
                                        <th>Course</th>
                                        <th>Document Type</th>
@@ -46,6 +47,7 @@
                                  <tbody>
                                     <tr v-for="req in request" :key="req.id">
                                        <td>{{req.name}}</td>
+                                       <td>{{req.id}}</td>
                                        <td>{{req.department}}</td>
                                        <td>{{req.course}}</td>
                                        <td>{{req.fileType}}</td>

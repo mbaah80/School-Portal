@@ -16,7 +16,7 @@
 
                      </a>
                      <ul class="dropdown-menu settings-menu">
-                        <li><router-link to="/profile"><i class="icon-user"></i> Profile</router-link></li>
+                        <li><router-link to="/adminProfile"><i class="icon-user"></i> Profile</router-link></li>
                         <li class="p-0">
                            <div class="dropdown-divider m-0"></div>
                         </li>

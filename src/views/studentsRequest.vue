@@ -16,7 +16,8 @@
             <div class="row">
                <div class="col-sm-12 p-0">
                   <div class="main-header">
-                     <h4>Alumni List</h4>
+                     <h4>Request List</h4>
+                     <router-link to="/upload" type="button" class="btn btn-warning waves-effect waves-light" style="margin-left:80%">Upload Documents </router-link>
                   </div>
                </div>
             </div>
@@ -35,23 +36,23 @@
                                  <thead>
                                       <tr>
                                        <th>Full Name</th>
+                                       <th>Identifications Number</th>
                                        <th>Department</th>
                                        <th>Course</th>
                                        <th>Document Type</th>
                                        <th>Completed Year</th>
                                        <th>Request Date</th>
-                                       <th>Upload File</th>
                                     </tr>
                                  </thead>
                                  <tbody>
                                     <tr v-for="alumni in alumnis" :key="alumni.id">
                                        <td>{{alumni.name}}</td>
+                                       <td>{{alumni.id}}</td>
                                        <td>{{alumni.department}}</td>
                                        <td>{{alumni.course}}</td>
                                        <td>{{alumni.fileType}}</td>
                                        <td>{{alumni.date}}</td>
                                        <td>{{dateNow}}</td>
-                                       <td><router-link to="" type="button" class="btn btn-primary waves-effect waves-light">Upload</router-link></td>
                                     </tr>
                                    
                                  </tbody>

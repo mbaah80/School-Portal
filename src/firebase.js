@@ -9,6 +9,7 @@ import 'firebase/firebase-functions'
   var firebaseConfig = {
     apiKey: "AIzaSyCyyYoTfmDhgqL2PvVfmLNh33W4-uoD0nI",
     authDomain: "alumni-350de.firebaseapp.com",
+    databaseURL: "https://alumni-350de-default-rtdb.firebaseio.com",
     projectId: "alumni-350de",
     storageBucket: "alumni-350de.appspot.com",
     messagingSenderId: "814101334721",

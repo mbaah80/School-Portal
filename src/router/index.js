@@ -19,6 +19,7 @@ import forgotPassword from '../views/forgot-password.vue'
 import lecturer from '../views/lecturer.vue'
 import request from '../views/request.vue'
 import Profile from '../views/profile.vue'
+import adminProfile from '../views/adminProfile.vue'
 import Chat from '../views/chat.vue'
 import enterChat from '../views/enterChat.vue'
 import StudentRequest from '../views/studentsRequest.vue'
@@ -47,6 +48,11 @@ const router = createRouter({
       path:'/profile',
       name:'Profile',
       component:Profile
+    },
+    {
+      path:'/adminProfile',
+      name:'adminProfile',
+      component:adminProfile
     },
     {
       path:'/admin',
@@ -96,8 +102,8 @@ const router = createRouter({
       meta:{requiresAuth: true},
     },
     {
-      path:'/alumni/:id',
-      name:'alumni',
+      path:'/upload',
+      name:'upload',
       component:alumni,
       meta:{requiresAuth: true},
     },{

@@ -40,7 +40,12 @@
                                         <input type="text" id="h-email" v-model="name" class="form-control" required>
                                     </div>
                                 </div>
-                                
+                                <div class="form-group row">
+                                    <label for="h-email" class="col-md-2 col-form-label form-control-label">Student ID</label>
+                                    <div class="col-md-10">
+                                        <input type="text" id="h-email" v-model="id" class="form-control" required>
+                                    </div>
+                                </div>
                                 <div class="form-group row">
                                     <label for="h-pwd" class="col-md-2 col-form-label form-control-label">Department</label>
                                     <div class="col-md-10">
@@ -62,8 +67,7 @@
                                             <option>Transcript</option>
                                             <option>Recommendation</option>
                                             <option>English Proficiency</option>
-                                            <option>4</option>
-                                            <option>5</option>
+                                            <option>Other Files</option>
                                         </select>
                                     </div>
                                 </div>
@@ -115,6 +119,7 @@ export default {
    data() {
        return {
            name:'',
+           id:'',
            department:'',
            course:'',
            fileType:'',
@@ -132,6 +137,7 @@ export default {
           db.collection('alumniRequest').add({
               uid:user.uid,
               name:this.name,
+              id:this.id,
               department:this.department,
               course:this.course,
               fileType:this.fileType,
@@ -140,6 +146,7 @@ export default {
           }).then((res)=>{
 
               this.name = ""
+              this.id=""
               this.department = ""
               this.course = ""
               this.fileType =""
@@ -152,6 +159,7 @@ export default {
               $('#spinner').hide()
 			$('#hideText').show()
             this.name = ""
+            this.id=""
               this.department = ""
               this.course = ""
               this.fileType =""

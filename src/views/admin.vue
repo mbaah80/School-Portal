@@ -21,8 +21,8 @@
             <div class="row dashboard-header">
                <div class="col-lg-3 col-md-6">
                   <div class="card dashboard-product">
-                     <span>Students Total</span>
-                     <h2 class="dashboard-total-products">4500</h2>
+                     <span>Total Alumni</span>
+                     <h2 class="dashboard-total-products">{{studentTotal}}</h2>
                      <div class="side-box">
                         <i class="ti-signal text-warning-color"></i>
                      </div>
@@ -30,8 +30,8 @@
                </div>
                <div class="col-lg-3 col-md-6">
                   <div class="card dashboard-product">
-                     <span>Male</span>
-                     <h2 class="dashboard-total-products">37,500</h2>
+                     <span>Total Lecturers</span>
+                     <h2 class="dashboard-total-products">{{lecTotal}}</h2>
                      <div class="side-box ">
                         <i class="ti-gift text-primary-color"></i>
                      </div>
@@ -39,8 +39,8 @@
                </div>
                <div class="col-lg-3 col-md-6">
                   <div class="card dashboard-product">
-                     <span>Female</span>
-                     <h2 class="dashboard-total-products">$<span>30,780</span></h2>
+                     <span>Total Document Send</span>
+                     <h2 class="dashboard-total-products"><span>{{doc}}</span></h2>
                      <div class="side-box">
                         <i class="ti-direction-alt text-success-color"></i>
                      </div>
@@ -48,8 +48,8 @@
                </div>
                <div class="col-lg-3 col-md-6">
                   <div class="card dashboard-product">
-                     <span>Total Dues Collected </span>
-                     <h2 class="dashboard-total-products">$<span>30,780</span></h2>
+                     <span>Total File Request </span>
+                     <h2 class="dashboard-total-products"><span>{{request}}</span></h2>
                      <div class="side-box">
                         <i class="ti-rocket text-danger-color"></i>
                      </div>
@@ -73,6 +73,7 @@
                               <thead>
                                     <tr>
                                        <th>Full Name</th>
+                                       <th>School ID</th>
                                        <th>Department</th>
                                        <th>Course</th>
                                        <th>Document Type</th>
@@ -83,6 +84,7 @@
                               <tbody>
                                 <tr v-for="alumni in alumnis" :key="alumni.id">
                                        <td>{{alumni.name}}</td>
+                                       <td>{{alumni.id}}</td>
                                        <td>{{alumni.department}}</td>
                                        <td>{{alumni.course}}</td>
                                        <td>{{alumni.fileType}}</td>
@@ -125,7 +127,11 @@ export default {
    data() {
       return {
          alumnis:[],
-         dateNow:{}
+         dateNow:{},
+         studentTotal:{},
+         lecTotal:{},
+         doc:{},
+         request:{}
       }
    },
     mounted() {
@@ -141,6 +147,19 @@ export default {
              this.dateNow = moment(serverDate).format('LL')
           });
         });
+
+        db.collection('users').get().then(snap => {
+           this.studentTotal =  snap.size // will return the collection size
+         });
+         db.collection('admin').get().then(snap => {
+           this.lecTotal =  snap.size // will return the collection size
+         });
+          db.collection('documents').get().then(snap => {
+           this.doc =  snap.size // will return the collection size
+         });
+          db.collection('alumniRequest').get().then(snap => {
+           this.request =  snap.size // will return the collection size
+         });
    },
 }
 </script>

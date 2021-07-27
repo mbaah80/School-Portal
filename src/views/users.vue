@@ -50,7 +50,7 @@
                                        <td>{{user.department}}</td>
                                        <td>{{user.email}}</td>
                                        <td>{{user.contact}}</td>
-                                       <td><button type="button" class="btn btn-danger waves-effect waves-light">X</button></td>
+                                       <td><button type="submit" class="btn btn-danger waves-effect waves-light" @click="del()">X</button></td>
                                     </tr>
                                    
                                  </tbody>
@@ -83,6 +83,18 @@ export default {
      data() {
       return {
          users:[]
+      }
+   },
+   methods: {
+      del(){
+         console.log('click')
+           db.collection('admin').where('id','==', this.users)
+                    .get().then(function(querySnapshot) {
+                        querySnapshot.forEach(function(doc) {
+                           doc.ref.delete();
+                             this.$toast.error("Lecturer Delete Successful");
+                  });
+                  });
       }
    },
     mounted() {

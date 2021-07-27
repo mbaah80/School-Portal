@@ -38,7 +38,6 @@
                                        <th>School ID</th>
                                        <th>Course</th>
                                        <th>Completion Year</th>
-                                       <th>Option</th>
                                     </tr>
                                  </thead>
                                  <tbody>
@@ -47,7 +46,6 @@
                                        <td>{{alumni.id}}</td>
                                        <td>{{alumni.course}}</td>
                                        <td>{{alumni.year}}</td>
-                                       <td><router-link :to="'/alumni/' + alumni.id" type="button" class="btn btn-primary waves-effect waves-light">View</router-link></td>
                                     </tr>
                                    
                                  </tbody>
