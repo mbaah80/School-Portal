@@ -33,13 +33,13 @@
                   <div class="card">
                      <div class="card-block accordion-block">
                         <div id="accordion" role="tablist" aria-multiselectable="true">
-                           <div class="accordion-panel" v-for="job in jobs" :key="job.id">
+                           <div class="accordion-panel" v-for="(job, index) in jobs" :key="index">
                               <div class="accordion-heading" role="tab" id="headingTwo">
                                  <h2 class="card-title accordion-title">
                                 <a  class="accordion-msg" data-toggle="collapse" data-parent="#accordion"   :href="'#collapseTwo'+index" aria-expanded="true" aria-controls="collapseOne">
                                     <div class="row">
                                        <div class="col-md-10"> <h3>{{job.title}}</h3></div>
-                                       <div class="col-md-2"><small style="color:#fff" type="button" class="btn btn-danger waves-effect waves-light disabled">Delete</small></div>
+                                       
                                     </div>
                                    
                                     
@@ -71,6 +71,7 @@
                                     <span>Job Decription </span> <br>  {{job.description}}
                                     </p> <br>
                                     <p><span>Date Posted</span> {{dateNow}}</p>
+                                      <div class="col-md-8" style="margin-top:30px; margin-bottom:30px"><small style="color:#fff" type="submit" class="btn btn-danger waves-effect waves-light" @click="del(job.id)">Delete</small></div>
                                  </div>
                               </div>
                            </div>
@@ -108,6 +109,16 @@ export default {
       return {
          jobs:[],
          dateNow:{}
+      }
+   },
+   methods: {
+      del(id){
+         db.collection('job').doc(id).delete()
+                    .then(()=>{
+                          this.$toast.success("Delete Operation Done Successful");
+                    }).catch(()=>{
+                         this.$toast.error("Internal Server Error, Check Your Internet");
+                    })
       }
    },
     mounted() {

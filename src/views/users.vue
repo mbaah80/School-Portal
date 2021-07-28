@@ -50,7 +50,7 @@
                                        <td>{{user.department}}</td>
                                        <td>{{user.email}}</td>
                                        <td>{{user.contact}}</td>
-                                       <td><button type="submit" class="btn btn-danger waves-effect waves-light" @click="del()">X</button></td>
+                                       <td><button type="submit" class="btn btn-danger waves-effect waves-light" @click="del(user.id)">X</button></td>
                                     </tr>
                                    
                                  </tbody>
@@ -86,15 +86,15 @@ export default {
       }
    },
    methods: {
-      del(){
+      del(id){
          console.log('click')
-           db.collection('admin').where('id','==', this.users)
-                    .get().then(function(querySnapshot) {
-                        querySnapshot.forEach(function(doc) {
-                           doc.ref.delete();
-                             this.$toast.error("Lecturer Delete Successful");
-                  });
-                  });
+           db.collection('admin').doc(id).delete()
+                    .then(res=>{
+                        console.log(res)
+                          this.$toast.success("Delete Operation Done Successful");
+                    }).catch(err=>{
+                         this.$toast.error("Internal Server Error, Check Your Internet");
+                    })
       }
    },
     mounted() {
