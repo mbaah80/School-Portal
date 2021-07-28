@@ -176,7 +176,9 @@ export default {
                this.uploadTask = ""
                this.id = ""
                this.selectedFile = ""
-               this.$toast.success("Data Upload successful");
+               this.$toast.success("Data Upload successful",{
+            position: "top",
+          });
                $('#spinner').hide()
 			      $('#hideText').show()
             }).catch((err)=>{
@@ -185,7 +187,9 @@ export default {
                this.uploadTask = ""
                this.id = ""
                this.selectedFile = ""
-                this.$toast.error(err);
+                this.$toast.error(err,{
+            position: "top",
+          });
             })
       },
 

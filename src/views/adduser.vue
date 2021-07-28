@@ -160,10 +160,14 @@ export default {
 				this.department = ""
 				this.contact = ""
                 this.position=""
-                this.$toast.success('User Account Added');
+                this.$toast.success('User Account Added',{
+            position: "top",
+          });
 			}).catch((err)=>{
 				
-				this.$toast.error(err.message);
+				this.$toast.error(err.message,{
+            position: "top",
+          });
 			    this.email = ""
 				this.password = ""
 				this.name = ""

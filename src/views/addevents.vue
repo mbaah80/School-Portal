@@ -135,9 +135,13 @@ export default {
               this.description = ""
               $('#spinner').hide()
 			$('#hideText').show()
-             this.$toast.success('Event Posted Successful');
+             this.$toast.success('Event Posted Successful',{
+            position: "top",
+          });
           }).catch((err)=>{
-              this.$toast.error('Internal Server Error');
+              this.$toast.error('Internal Server Error',{
+            position: "top",
+          });
               $('#spinner').hide()
 			$('#hideText').show()
              this.title = ""

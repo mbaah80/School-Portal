@@ -91,9 +91,13 @@ export default {
            db.collection('admin').doc(id).delete()
                     .then(res=>{
                         console.log(res)
-                          this.$toast.success("Delete Operation Done Successful");
+                          this.$toast.success("Delete Operation Done Successful",{
+            position: "top",
+          });
                     }).catch(err=>{
-                         this.$toast.error("Internal Server Error, Check Your Internet");
+                         this.$toast.error("Internal Server Error, Check Your Internet",{
+            position: "top",
+          });
                     })
       }
    },

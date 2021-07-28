@@ -7,13 +7,15 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@firebase/app": "^0.6.28",
     "@incuca/vue3-toaster": "^1.1.1",
     "core-js": "^3.6.5",
-    "firebase": "^8.7.1",
+    "firebase": "^8.8.0",
     "jquery": "^3.6.0",
     "moment": "^2.29.1",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
+    "vuefire": "^2.2.5",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {

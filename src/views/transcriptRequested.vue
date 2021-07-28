@@ -153,9 +153,13 @@ export default {
               this.date = ""
               $('#spinner').hide()
 			$('#hideText').show()
-             this.$toast.success('Request Successful');
+             this.$toast.success('Request Successful',{
+            position: "top",
+          });
           }).catch((err)=>{
-              this.$toast.error('Something Is Wrong');
+            this.$toast.error('Something Is Wrong',{
+            position: "top",
+          });
               $('#spinner').hide()
 			$('#hideText').show()
             this.name = ""

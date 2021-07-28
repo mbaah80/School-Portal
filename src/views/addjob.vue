@@ -128,8 +128,8 @@ export default {
        jobAdd(){
           $('#spinner').show()
 			$('#hideText').hide()
-            let user = fb.auth().currentUser;
-            let uid = user.uid;
+             let user = fb.auth().currentUser;
+             let uid = user.uid;
           db.collection('job').add({
               uid:user.uid,
               title:this.title,
@@ -140,7 +140,8 @@ export default {
               venue:this.venue,
               description:this.description,
               createdAt:this.createdAt
-          }).then((res)=>{
+          }).then((docRef)=>{
+              console.log(docRef.id)
               this.company=""
               this.title = ""
               this.email = ""
@@ -150,9 +151,13 @@ export default {
               this.description = ""
               $('#spinner').hide()
 			$('#hideText').show()
-             this.$toast.success('Job Posted Successful');
+             this.$toast.success('Job Posted Successful',{
+            position: "top",
+          });
           }).catch((err)=>{
-              this.$toast.error('Internal Server Error');
+              this.$toast.error('Internal Server Error',{
+            position: "top",
+          });
               $('#spinner').hide()
 			$('#hideText').show()
             this.company =""
